@@ -3,8 +3,6 @@ session_start();
 
 require __DIR__ . '/../classes/View.php';
 
-
-
 require (__DIR__ . '/Uploader.php');
 
 //$login = $_POST['login'];

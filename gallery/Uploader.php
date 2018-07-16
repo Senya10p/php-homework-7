@@ -37,7 +37,7 @@ class Uploader
 
          //   if (in_array( mime_content_type( $_FILES[$this->upl]['tmp_name'] ), $types )){
                 $type = $_FILES[$this->upl]['type'];    //Проверка удовлетворяет ли тип загружаемого файла списку разрешённых типов
-                if (in_array($type, $types )){
+            if (in_array($type, $types )){
 
                 if (file_exists($path . $_FILES[$this->upl]['name'] ) ){      //Проверка наличия файла с таким же именем
                     $i = 1;
@@ -46,34 +46,30 @@ class Uploader
                         $i++;
                     }
                     $nf = $i . $_FILES[$this->upl]['name'];
-                    move_uploaded_file(                         //Если файл был загружен, то переносим из временного места в постоянное
-                        $_FILES[$this->upl]['tmp_name'],
-                        $path . $nf
-                    );
                 }
-                else{
-                    //Иначе если файла с таким именем не существовало, то загружаем файл от пользователя с тем же именем файла. Перемещаем файл из временного места
+                else {
+                    //Иначе оставляем имя файла от пользователя
                     $nf = $_FILES[$this->upl]['name'];
-                    move_uploaded_file(
-                        $_FILES[$this->upl]['tmp_name'],
-                        $path . $nf
-                    );
                 }
+              move_uploaded_file(   //Если файл был загружен, то переносим из временного места в постоянное
+              $_FILES[$this->upl]['tmp_name'],
+              $path . $nf
+              );
             }
         }
     }
     //Метод добавления лог(кто, когда и какой файл загрузил)
     public function addLog($logp){
-        if (isset($_FILES[$this->upl])) {                //Проверка, что файл существует
-            if (0 == $_FILES[$this->upl]['error']) {     //Проверка, нет ли ошибок при загрузке файла
+        if ( isset($_FILES[$this->upl]) ) {                //Проверка, что файл существует
+            if ( 0 == $_FILES[$this->upl]['error'] ) {     //Проверка, нет ли ошибок при загрузке файла
                 $type = $_FILES[$this->upl]['type'];
                 $type1 = ['image/jpg', 'image/png', 'image/jpeg']; //Список разрешённых для загрузки типов
-                if (in_array($type, $type1)) {           //Проверка удовлетворяет ли тип загружаемого файла списку разрешённых типов
+                if ( in_array($type, $type1) ) {           //Проверка удовлетворяет ли тип загружаемого файла списку разрешённых типов
                     //4. Если картинка успешно загружена оставляем лог
                     $nimg = $_FILES[$this->upl]['name'];   //Если файл с таким именем небыло
                     $log2 = 'User: '. getCurrentUser() . '| Date: ' . date('Y-m-d H:i:s') . '| Image: ' . $nimg;  //Добавляем лог с данными
                     $log = fopen($logp, 'a');     //Задаём путь к файлу с данными.
-                    fwrite($log, $log2 . PHP_EOL);
+                    fwrite( $log, $log2 . PHP_EOL );
                     fclose($log);
                 }
             }
