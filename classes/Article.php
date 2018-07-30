@@ -27,5 +27,4 @@ class Article       //3.1 Создаём класс Article
     {
         return $this->fText;
     }
-
 }

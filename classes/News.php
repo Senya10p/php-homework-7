@@ -2,41 +2,42 @@
 
 require __DIR__ . '/Article.php';
 
-class News                          //3.2 Создаём класс News
+class News //3.2 Создаём класс News
 {
-    protected $articles = [];
-    protected $path;
-   // protected $arts;
+    protected $news = []; //защищённое свойство с новостями
 
 
-    public function __construct($path)
+    public function __construct($path) //в конструкторе указывается путь до файла с новостями
     {
-        if ( file_exists( $path ) ) {
-            $arts = file_get_contents($path);
+        if ( file_exists($path) ) {
+            $arts = file_get_contents($path); //читаем содержимое файла в строку
+
             if (false !== $arts) {
                 $arts = unserialize($arts);
-                if (is_array($arts)) {
-                    $this->articles = $arts;
+
+                if ( is_array($arts) ) { //если файл является массивом, то добавляем новую статью в массив
+                    $this->news = $arts;
                 }
             }
         }
     }
 
-    public function getArticles()
+    public function getArticles() //возвращает статьи новостей
     {
-        return $this->articles;
+        return $this->news;
     }
 
-    public function add(Article $article)
+    public function add(Article $article) //метод для добавления статьи
     {
-        $this->articles[] = $article;
+        $this->news[] = $article;
     }
 
-    public function save()
+    public function save() //метод для сохранения статьи в файл
     {
-        $art = serialize( $this->articles );
-        if ( isset($art) ) {
-            file_put_contents(__DIR__ . '/../new.txt', $art);
+        $ar = serialize($this->news);
+        if ( isset($ar) ) {
+            $path = __DIR__ . '/../news.txt'; //путь до файла с новостями
+            file_put_contents($path, $ar);
         }
     }
 }

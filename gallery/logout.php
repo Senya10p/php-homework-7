@@ -8,5 +8,4 @@ if ( null !== getCurrentUser() ) {  //Если пользователь авто
 
     session_destroy();
 }
-
 header('Location: /gallery/login.php'); //редирект на страницу авторизации

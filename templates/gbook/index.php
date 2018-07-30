@@ -24,7 +24,7 @@
 <h4>Гостевая книга</h4>
 <?php
 
-foreach ($records as $record) {   //Выводим массив с записями
+foreach ($records as $record) {   //Выводим массив с записями.
     ?>
     <?php echo $record; ?>
     <hr>

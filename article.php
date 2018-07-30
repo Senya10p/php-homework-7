@@ -3,22 +3,21 @@ require __DIR__ . '/classes/News.php';
 
 require __DIR__ . '/classes/View.php';
 
-if ( isset($_GET['id']) ) {
+$news = new News(__DIR__ . '/news.txt');
 
-    $new = new News( __DIR__ . '/new.txt');
+$id = $_GET['id'];
 
-    $arr = $new->getArticles()[ $_GET['id'] ];
+if ( isset( $news->getArticles()[$id] ) ) { //проверяем есть ли статьи с таким id
 
-    $caption = $arr->getCaption();
-    $fText = $arr->getFText();
+    $article = $news->getArticles()[$id];
 
+} else {
+
+    die('Такой статьи не найдено');
 }
 
-$v = new View();
+$view = new View();
 
-$v->assign('caption', $caption );
-$v->assign('fText', $fText );
+$view->assign('article', $article);
 
-$v->display( __DIR__ . '/templates/art.php');
-
-?>
+$view->display(__DIR__ . '/templates/art.php');

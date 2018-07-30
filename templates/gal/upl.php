@@ -1,8 +1,8 @@
-    <html>
-    <head>
-        <title>PHP-1</title>
-    </head>
-    <body>
+<html>
+<head>
+    <title>PHP-1</title>
+</head>
+<body>
     <h5>Здравствуйте <?php echo getCurrentUser(); ?>. Вы вошли в фотогалерею!</h5>
     <h1>PHP</h1>
     <h2>7 урок</h2>
@@ -23,10 +23,9 @@
         4.	При выполнении задачи 3. весь код должен быть в классах. Используйте при необходимости тайп-хинтинг. Весь вывод - через ранее созданный объект View.<br>
     </h5>
     <h4>Фотогалерея</h4>
-
     <p>Загрузка файлов</p>
     <!-- Форма загрузки файлов-->
-    <form action="/gallery/index.php" method="post" enctype="multipart/form-data">
+    <form action="/gallery/upload.php" method="post" enctype="multipart/form-data">
 
         <input type="file" name="upl">
         <button type="submit">Добавить</button>
@@ -35,9 +34,8 @@
     <br><br>
     <a href="/gallery/gallery.php">Перейти в фотогалерею</a>
     <br><br>
-
     <a href="/gallery/logout.php">Выход</a>
     <br><br>
     <a href="/index.php">Перейти на главную страницу</a>
-    </body>
-    </html>
+</body>
+</html>
