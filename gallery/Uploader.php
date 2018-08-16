@@ -65,7 +65,6 @@ class Uploader
                 if ( in_array($type, $type1) ) { //Проверка удовлетворяет ли тип загружаемого файла списку разрешённых типов
 
                     //4. Если картинка успешно загружена оставляем лог
-                    $nimg = $_FILES[$this->upl]['name']; //Если файл с таким именем небыло
                     $log2 = 'User: '. getCurrentUser() . '| Date: ' . date('Y-m-d H:i:s') . '| Image: ' . $this->nameF; //Добавляем лог с данными
                     $log = fopen($logp, 'a'); //Задаём путь к файлу с данными.
                     fwrite( $log, $log2 . PHP_EOL );

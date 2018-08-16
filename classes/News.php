@@ -27,6 +27,13 @@ class News //3.2 Создаём класс News
         return $this->news;
     }
 
+    public function getArticleById($id)
+    {
+        if ( isset( $this->news[$id] ) ) {
+            return $this->news[$id];
+        }
+    }
+
     public function add(Article $article) //метод для добавления статьи
     {
         $this->news[] = $article;

@@ -7,12 +7,10 @@ $news = new News(__DIR__ . '/news.txt');
 
 $id = $_GET['id'];
 
-if ( isset( $news->getArticles()[$id] ) ) { //проверяем есть ли статьи с таким id
-
-    $article = $news->getArticles()[$id];
+if ( null !== $news->getArticleById($id) ) { //проверяем есть ли статьи с таким id
+    $article = $news->getArticleById($id);
 
 } else {
-
     die('Такой статьи не найдено');
 }
 
